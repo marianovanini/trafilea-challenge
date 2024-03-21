@@ -1,0 +1,96 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Trafilea API Challenge",
+      "description": "Implement an API that categorizes and stores numbers based on their divisibility by 3 and 5, mimicking the logic described below:
+                            ● Numbers divisible by 3: Categorized as Type 1
+                            ● Numbers divisible by 5: Categorized as Type 2
+                            ● Numbers divisible by both 3 and 5: Categorized as Type 3
+                            ● Other numbers: Stored as their original value
+                    "
+    },
+    "paths": {
+      "/add/{num}": {
+        "post": {
+          "summary": "Add a number",
+          "parameters": [
+            {
+              "name": "num",
+              "in": "path",
+              "required": true,
+              "description": "Number to add",
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Number added successfully",
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "example": {
+                  "50": "Type 2"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/get_one/{num}": {
+        "get": {
+          "summary": "Get type of a number",
+          "parameters": [
+            {
+              "name": "num",
+              "in": "path",
+              "required": true,
+              "description": "Number to get type",
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "example": {
+                  "3": "Type 1"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/get_all": {
+        "get": {
+          "summary": "Get all number's types",
+          "responses": {
+            "200": {
+              "description": "Success",
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "example": {
+                  "3": "Type 1",
+                  "15": "Type 3",
+                  "122": "122",
+                  "400": "Type 2",
+                  "1220": "Type 2",
+                  "40043": "40043",
+                  "40044": "Type 1"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
